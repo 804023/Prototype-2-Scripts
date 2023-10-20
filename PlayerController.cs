@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (horizontalInput.GetKeyDown(KeyCode.Space))
+        {
+            //Launch a projectile from the player
+        }
         // Keep theh player in bounds
         if (transform.position.x < -xRange) 
         {
