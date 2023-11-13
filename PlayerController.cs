@@ -10,8 +10,11 @@ public class PlayerController : MonoBehaviour
         
     }
     public float horizontalInput;
+    public float verticalInput;
     public float speed = 10.0f;
-    public float xRange = 10;
+    private float xRange = 20;
+    private float zTop = 17;
+    private float zBottom = -2;
 
     public GameObject projectilePrefab;
     // Update is called once per frame
@@ -31,7 +34,17 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
+        if (transform.position.z > zTop)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zTop);
+        }
+        if (transform.position.z < zBottom)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBottom);
+        }
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        verticalInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
     }
 }
